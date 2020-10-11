@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AmccAmikom</string>
+
+    <string name="label_button_login">Sign In</string>
+    <string name="hint_edit_text_login_nim">NIM</string>
+    <string name="hint_edit_text_login_password">Password</string>
+
+    <string name="label_menu_main_history">Sejarah AMCC</string>
+    <string name="label_menu_main_vision_mission">Visi Misi</string>
+    <string name="label_menu_main_management">Kepengurusan</string>
+    <string name="label_menu_main_division">Divisi</string>
+    <string name="label_menu_main_module">Modul</string>
+    <string name="label_menu_main_presence">Presensi</string>
 </resources>
