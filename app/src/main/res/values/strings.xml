@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">AmccAmikom</string>
-
     <string name="label_button_login">Sign In</string>
     <string name="hint_edit_text_login_nim">NIM</string>
     <string name="hint_edit_text_login_password">Password</string>
