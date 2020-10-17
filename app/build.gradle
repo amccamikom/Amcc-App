@@ -33,12 +33,12 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
-//            buildConfigField "String", "API_BASE_URL", API_BASE_URL
-//            buildConfigField "String", "API_KEY", API_KEY
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL
             resValue "string", "app_name", "(Dev) AMCC Amikom App"
         }
         release {
             minifyEnabled false
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", "AMCC Amikom App"
         }
