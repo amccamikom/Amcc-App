@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def versionMajor = 0
+def versionMinor = 1
+def versionPatch = 0
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -20,16 +24,23 @@ android {
         applicationId "or.id.amcc"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode versionMajor * 1000000 + versionMinor * 1000 + versionPatch * 100
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL
+            resValue "string", "app_name", "(Dev) AMCC Amikom App"
+        }
         release {
             minifyEnabled false
+            buildConfigField "String", "API_BASE_URL", API_BASE_URL
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "app_name", "AMCC Amikom App"
         }
     }
 
@@ -40,13 +51,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // viewpager 2
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
@@ -55,21 +65,21 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
     // view model and live data
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     // material
-    implementation 'com.google.android.material:material:1.2.0-alpha06'
+    implementation 'com.google.android.material:material:1.3.0-alpha03'
 
     // coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8'
 
     // kodein DI
     implementation 'org.kodein.di:kodein-di-generic-jvm:6.2.1'
@@ -84,8 +94,8 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.2.5'
 
     // navigation
-    implementation 'androidx.navigation:navigation-fragment:2.3.0-alpha05'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0-alpha05'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
 
     // groupie
     implementation "com.xwray:groupie:2.3.0"
@@ -96,10 +106,10 @@ dependencies {
 
     // shimmer recyclerview
     implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
-    implementation 'com.airbnb.android:lottie:3.4.0'
+    implementation 'com.airbnb.android:lottie:3.4.1'
 
     // logging
-    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
 }

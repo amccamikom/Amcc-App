@@ -2,12 +2,10 @@ package or.id.amcc.data.network
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import or.id.amcc.AmccAmikomApplication
 import or.id.amcc.BuildConfig
 import or.id.amcc.data.network.responses.*
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -52,7 +50,7 @@ interface MyApi {
 
             return Retrofit.Builder()
                 .client(getOkHttpClient())
-                .baseUrl("https://amcc-test.amcc.or.id/api/")
+                .baseUrl(BuildConfig.API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MyApi::class.java)
